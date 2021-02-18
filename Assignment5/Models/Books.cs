@@ -11,6 +11,7 @@ namespace Assignment5.Models
         //ISBN needs to follow a certain format
         //all properties are required
     {
+        //comment
         [Key]
         public int BookID { get; set; }
         [Required(ErrorMessage ="Please enter all fields")]
