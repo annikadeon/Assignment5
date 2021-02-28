@@ -33,6 +33,9 @@ namespace Assignment5.Models
         public string Category { get; set; }
         [Required(ErrorMessage = "Please enter all fields")] 
         public float Price { get; set; }
+        [Required(ErrorMessage = "Please enter all fields")]
+        public int PagesNum { get; set; }
+
 
 
     }

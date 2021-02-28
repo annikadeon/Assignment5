@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-//database
+//"hooks" you up to the database
 namespace Assignment5.Models
 {
     //inherit from system

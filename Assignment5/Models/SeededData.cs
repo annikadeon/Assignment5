@@ -14,6 +14,7 @@ namespace Assignment5.Models
         {
             BooksDbContext context = application.ApplicationServices.
                 CreateScope().ServiceProvider.GetRequiredService<BooksDbContext>();
+            //if any migrations need to happen, then migrate
 
             if (context.Database.GetPendingMigrations().Any())
             {
@@ -32,7 +33,8 @@ namespace Assignment5.Models
                         ISBN = "978-0451419439",
                         Classification= "Fiction",
                         Category = "Classic",
-                        Price = 9.95F
+                        Price = 9.95F,
+                        PagesNum= 1448
                     },
                     new Books
                     {
@@ -44,7 +46,8 @@ namespace Assignment5.Models
                         ISBN = "978-0743270755",
                         Classification = "Non-Fiction",
                         Category = "Biography",
-                        Price = 14.58F
+                        Price = 14.58F,
+                        PagesNum = 944
                     },
                     new Books
                     {
@@ -55,7 +58,8 @@ namespace Assignment5.Models
                         ISBN = "978-0553384611",
                         Classification = "Non-Fiction",
                         Category = "Biography",
-                        Price = 21.54F
+                        Price = 21.54F,
+                        PagesNum = 832
                     },
                     new Books
                     {
@@ -67,7 +71,8 @@ namespace Assignment5.Models
                         ISBN = "978-0812981254",
                         Classification = "Non-Fiction",
                         Category = "Biography",
-                        Price = 11.61F
+                        Price = 11.61F,
+                        PagesNum = 864
                     },
                     new Books
                     {
@@ -78,7 +83,8 @@ namespace Assignment5.Models
                         ISBN = "978-0812974492",
                         Classification = "Non-Fiction",
                         Category = "Historical",
-                        Price = 13.33F
+                        Price = 13.33F,
+                        PagesNum = 528
                     },
                     new Books
                     {
@@ -89,7 +95,8 @@ namespace Assignment5.Models
                         ISBN = "978-0804171281",
                         Classification = "Fiction",
                         Category = "Historical Fiction",
-                        Price = 15.95F
+                        Price = 15.95F,
+                        PagesNum = 288
                     },
                     new Books
                     {
@@ -100,7 +107,8 @@ namespace Assignment5.Models
                         ISBN = "978-1455586691",
                         Classification = "Non-Fiction",
                         Category = "Self-Help",
-                        Price = 14.99F
+                        Price = 14.99F,
+                        PagesNum = 304
                     },
                     new Books
                     {
@@ -111,7 +119,8 @@ namespace Assignment5.Models
                         ISBN = "978-1455523023",
                         Classification = "Non-Fiction",
                         Category = "Self-Help",
-                        Price = 21.66F
+                        Price = 21.66F,
+                        PagesNum = 240
                     },
                     new Books
                     {
@@ -122,7 +131,8 @@ namespace Assignment5.Models
                         ISBN = "978-1591847984",
                         Classification = "Non-Fiction",
                         Category = "Business",
-                        Price = 29.16F
+                        Price = 29.16F,
+                        PagesNum = 400
                     },
                     new Books
                     {
@@ -133,8 +143,46 @@ namespace Assignment5.Models
                         ISBN = "978-0553393613",
                         Classification = "Fiction",
                         Category = "Thrillers",
-                        Price = 15.03F
-                    }
+                        Price = 15.03F,
+                        PagesNum = 642
+                    },
+                        new Books
+                        {
+                            Title = "The Mysterious Benedict Society",
+                            AuthorFirst = "Trenton",
+                            AuthorMiddle= "Lee",
+                            AuthorLast = "Stewart",
+                            Publisher = "Little, Brown and Company",
+                            ISBN = "978-6003956456",
+                            Classification = "Fiction",
+                            Category = "Mystery",
+                            Price = 9.83F,
+                            PagesNum = 512
+                        },
+                        new Books
+                        {
+                            Title = "Jane Eyre",
+                            AuthorFirst = "Charlotte",
+                            AuthorLast = "Bronte",
+                            Publisher = "Smith, Elder & Co.",
+                            ISBN = "978-0141441146",
+                            Classification = "Fiction",
+                            Category = "Classic",
+                            Price = 4.99F,
+                            PagesNum = 480
+                        },
+                        new Books
+                        {
+                            Title = "Where the Red Fern Growsw",
+                            AuthorFirst = "Wilson",
+                            AuthorLast = "Rawls",
+                            Publisher = "Doubleday",
+                            ISBN = "978-0440412670",
+                            Classification = "Fiction",
+                            Category = "Class",
+                            Price = 6.19F,
+                            PagesNum = 304
+                        }
 
                     );
                 //save data

@@ -2,6 +2,7 @@ using Assignment5.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -58,11 +59,12 @@ namespace Assignment5
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+            //change the url so it has P1 and P1 instead
+            app.UseEndpoints(endpoints => {
+                endpoints.MapControllerRoute("pagination",
+                "P{page}",
+                new { Controller = "Home", action = "Index" });
+                endpoints.MapDefaultControllerRoute();
             });
             //pass in seed data
             SeededData.EnsurePopulated(app);
