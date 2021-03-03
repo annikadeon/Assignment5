@@ -4,32 +4,18 @@
 }
 @model ProjectListViewModel
 
-    <div class="row justify-content-around">
-        @foreach (var x in Model.Books)
-        {
-        <div class="p-1 m-3 col-3">
-            <div class="card card-text border-info ">
-                <div class="p-1 m-1 text-xl-center">
-                    <h3>@x.Title</h3>
-                    <h5 class="badge-dark p-1 m-1">By @x.AuthorLast, @x.AuthorFirst @x.AuthorMiddle</h5>
-                    <p class="text-success">$@x.Price</p>
-                </div>
+<div class="row justify-content-around">
+    @foreach (var x in Model.Books)
+    {
+        // call partial view
+        <partial name="ProjectSummary" model="x" />
 
-                <div class="text-info text-xl-center">
-                    <p>@x.Classification/ @x.Category</p>
-                    <p>@x.PagesNum Pages</p>
-                    <p>Published By @x.Publisher</p>
-                    <p>ISBN: @x.ISBN</p>
-                </div>
-            </div>
-          </div>
-
-        }
-    </div>
+    }
+</div>
 
 
     <div page-model="@Model.PagingInfo" page-action="Index" page-classes-enabled="true" page-class="btn" 
          page-class-normal="btn-outline-dark"
-         page-class-selected="btn-info"
+         page-class-selected="btn-info" page-url-category="@Model.Category"
          class="btn-group pull-right m-1"></div>
 

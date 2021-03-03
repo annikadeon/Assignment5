@@ -1,0 +1,17 @@
+﻿@model Books
+<div class="p-1 m-3 col-3">
+    <div class="card card-text border-info ">
+        <div class="p-1 m-1 text-xl-center">
+            <h3>@Model.Title</h3>
+            <h5 class="badge-dark p-1 m-1">By @Model.AuthorLast, @Model.AuthorFirst @Model.AuthorMiddle</h5>
+            <p class="text-success">$@Model.Price</p>
+        </div>
+
+        <div class="text-info text-xl-center">
+            <p>@Model.Classification/ @Model.Category</p>
+            <p>@Model.PagesNum Pages</p>
+            <p>Published By @Model.Publisher</p>
+            <p>ISBN: @Model.ISBN</p>
+        </div>
+    </div>
+</div>
