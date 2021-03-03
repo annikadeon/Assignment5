@@ -60,14 +60,29 @@ namespace Assignment5
             app.UseAuthorization();
 
             //change the url so it has P1 and P1 instead
-            app.UseEndpoints(endpoints => {
+            app.UseEndpoints(endpoints => 
+            {
+                endpoints.MapControllerRoute("catpage",
+                    "{category}/{page:int}",
+                    new { Controller = "Home", action = "Index" }
+                    );
+
+                endpoints.MapControllerRoute("page",
+                    "{page:int}",
+                    new { Controller = "Home", action = "Index" });
+
+                endpoints.MapControllerRoute("category",
+                    "{category}",
+                    new { Controller = "Home", action = "Index", page=1 });
+
+
                 endpoints.MapControllerRoute("pagination",
                 "P{page}",
                 new { Controller = "Home", action = "Index" });
                 endpoints.MapDefaultControllerRoute();
             });
             //pass in seed data
-            SeededData.EnsurePopulated(app);
+           // SeededData.EnsurePopulated(app);
         }
     }
 }
