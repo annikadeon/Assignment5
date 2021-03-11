@@ -32,11 +32,19 @@ namespace Assignment5
             {
                 //pass in options to have the info we need, and set the connection strings
                 //gives you the info of how to connect
-                options.UseSqlServer(Configuration["ConnectionStrings:AmazonBooksConnection"]);
+                options.UseSqlite(Configuration["ConnectionStrings:AmazonBooksConnection"]);
             });
             //
             services.AddScoped<BooksRepository, EFBooksRepository>();
-
+            //add services for razor pages
+            services.AddRazorPages();
+            //TO USE THE ADD TO CART BUTTON, get info to "stick'
+            services.AddDistributedMemoryCache();
+            services.AddSession();
+            // specifies that the same object should be used to satisfy related requests for Cart instances
+            services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
+            //same object should always be used
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,6 +62,8 @@ namespace Assignment5
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            //when user clicks on sight, set up session to be able to navigatesite and keep stuff in the cart
+            app.UseSession();
 
             app.UseRouting();
 
@@ -63,26 +73,35 @@ namespace Assignment5
             app.UseEndpoints(endpoints => 
             {
                 endpoints.MapControllerRoute("catpage",
-                    "{category}/{page:int}",
+                    "{category}/{pageNum:int}",
                     new { Controller = "Home", action = "Index" }
                     );
 
-                endpoints.MapControllerRoute("page",
-                    "{page:int}",
+                endpoints.MapControllerRoute("pageNum",
+                    "{pageNum:int}",
                     new { Controller = "Home", action = "Index" });
 
                 endpoints.MapControllerRoute("category",
                     "{category}",
-                    new { Controller = "Home", action = "Index", page=1 });
+                    new { Controller = "Home", action = "Index", pageNum = 1 });
 
+                endpoints.MapControllerRoute(
+                //Customize the URL Mapping to work for /P
+                "pagination",
+                "Books/P{pageNum}",
+                new { Controller = "Home", action = "Index" });
 
                 endpoints.MapControllerRoute("pagination",
-                "P{page}",
+                "P{pageNum}",
                 new { Controller = "Home", action = "Index" });
+
                 endpoints.MapDefaultControllerRoute();
+                //add routing for razor pages
+
+                endpoints.MapRazorPages();
             });
             //pass in seed data
-           // SeededData.EnsurePopulated(app);
+           SeededData.EnsurePopulated(app);
         }
     }
 }

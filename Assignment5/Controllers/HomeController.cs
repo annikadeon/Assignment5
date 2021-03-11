@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Assignment5.Models;
 using Assignment5.Models.ViewModels;
 
 namespace Assignment5.Controllers
@@ -24,19 +23,19 @@ namespace Assignment5.Controllers
             _repository = repository;
         }
 
-        public IActionResult Index(string category, int page = 1)
+        public IActionResult Index(string category, int pageNum = 1)
         {
             return View(new ProjectListViewModel
             {
                 Books = _repository.Books
                 .Where(p => category == null || p.Category == category)
                 .OrderBy(p => p.BookID)
-                .Skip((page - 1) * PageSize)
+                .Skip((pageNum - 1) * PageSize)
                 .Take(PageSize),
                 //new page infor object
                 PagingInfo = new PagingInfo
                 {
-                    CurrentPage = page,
+                    CurrentPage = pageNum,
                     ItemsPerPage = PageSize,
                     //if null, normal amount of items. otherwise, count the category
                     TotalNumItems = category == null ? _repository.Books.Count() :

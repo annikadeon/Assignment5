@@ -94,7 +94,7 @@ namespace Assignment5.Models
                         Publisher = "Vintage",
                         ISBN = "978-0804171281",
                         Classification = "Fiction",
-                        Category = "Historical Fiction",
+                        Category = "Historical",
                         Price = 15.95F,
                         PagesNum = 288
                     },
@@ -179,7 +179,7 @@ namespace Assignment5.Models
                             Publisher = "Doubleday",
                             ISBN = "978-0440412670",
                             Classification = "Fiction",
-                            Category = "Class",
+                            Category = "Classic",
                             Price = 6.19F,
                             PagesNum = 304
                         }

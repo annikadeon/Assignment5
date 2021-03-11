@@ -6,15 +6,26 @@
     <title>@ViewData["Title"] - Assignment5</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link href="/lib/font-awesome/css/all.min.css" rel="stylesheet" />
 </head>
 <body>
-    <header>
+    <div class="bg-dark text-white p-2">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col navbar-brand">Amazon Book Store</div>
+                <div class="col-6 text-right">
+                    <vc:cart-summary />
+                </div>
+            </div>
+        </div>
+    </div>
+    @*<header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom box-shadow text-capitalize mb-lg-1">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Assignment5</a>
             </div>
         </nav>
-    </header>
+    </header>*@
 
     <div class="">
         <div class="text-center">
@@ -23,22 +34,22 @@
         <div class="text-center justify-content-center">
             <vc:navigation-menu />
         </div>
-        
+
 
         <div class="">
 
             @RenderBody()
         </div>
     </div>
-  
-            <footer class="border-top footer text-light bg-info">
-                <div class="container">
-                    &copy; 2021 - Booklist
-                </div>
-            </footer>
-            <script src="~/lib/jquery/dist/jquery.min.js"></script>
-            <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-            <script src="~/js/site.js" asp-append-version="true"></script>
-            @RenderSection("Scripts", required: false)
+
+    <footer class="border-top footer text-light bg-info">
+        <div class="container">
+            &copy; 2021 - Booklist
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
 </body>
 </html>
