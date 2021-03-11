@@ -1,0 +1,53 @@
+﻿@page
+
+@model Assignment5.Pages.ShoppingModel
+
+@*Model View View Model (MVVM).. maybe the future*@
+
+<h2>Your Cart</h2>
+
+<table class="table table-bordered table-striped">
+
+    <thead>
+        <tr>
+            <th>Book</th>
+            <th>Quantity</th>
+            <th class="text-right">Price</th>
+            <th class="text-right">Subtotal</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var line in Model.Cart.Lines)
+        {
+            <tr>
+                <td class="text-center">@line.Book.Title</td>
+                <td class="text-left">@line.Quantity</td>
+                <td class="text-right">@line.Book.Price.ToString("c")</td>
+                <td class="text-right">@((line.Quantity* line.Book.Price).ToString("c"))</td>
+                <td class="text-center">
+                    @* remove button *@
+                    <form asp-page-handler="Remove" method="post">
+                        <input type="hidden" name="BookID"
+                               value="@line.Book.BookID" />
+                        <input type="hidden" name="returnUrl"
+                               value="@Model.ReturnUrl" />
+                        <button type="submit" class="btn btn-sm btn-danger">
+                            Remove
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3">Total: </td>
+            <td>@Model.Cart.ComputeTotalSum().ToString("c")</td>
+        </tr>
+    </tfoot>
+</table>
+
+<div class="text-center">
+    <a class="btn btn-dark text-white" href="@Model.ReturnUrl">Continue Shopping</a>
+</div>
